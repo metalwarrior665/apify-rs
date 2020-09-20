@@ -1,4 +1,4 @@
-use std::rc::Rc;
+use std::sync::Arc;
 
 use apify_client::client::ApifyClient;
 
@@ -7,7 +7,7 @@ use crate::dataset::DatasetHandle;
 
 pub struct Actor {
     // Rc might bite us later, let's see
-    pub client: Rc<ApifyClient>,
+    pub client: Arc<ApifyClient>,
     // TODO: Probably wrap in mutex
     pub dataset_cache: std::collections::HashMap<String, crate::dataset::DatasetHandle>
 }
@@ -17,7 +17,7 @@ impl Actor {
     pub fn new () -> Actor {
         let maybe_token = std::env::var("APIFY_TOKEN");
         Actor {
-            client: Rc::new(ApifyClient::new(maybe_token.ok())),
+            client: Arc::new(ApifyClient::new(maybe_token.ok())),
             dataset_cache: std::collections::HashMap::new(),
         }
     }
@@ -62,7 +62,7 @@ impl Actor {
                 id: name.to_string(),
                 name: name.to_string(),
                 is_on_cloud: false,
-                client: self.client.clone(),
+                client: Arc::clone(&self.client),
             }
         }
         self.dataset_cache.insert(dataset.id.clone(), dataset.clone());

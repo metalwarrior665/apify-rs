@@ -1,6 +1,6 @@
 [package]
 name = "apify"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["metalwarrior665 <lukaskrivka@gmail.com>"]
 edition = "2018"
 description = "Apify SDK is a scraping and automation framework that can run on Apify platform or independently"

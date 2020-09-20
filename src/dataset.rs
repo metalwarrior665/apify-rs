@@ -1,7 +1,7 @@
 use crate::actor::Actor;
 use apify_client::client::{ApifyClient, IdOrName};
 use rand::Rng;
-use std::rc::Rc;
+use std::sync::Arc;
 // Handle for both local and cloud datasets. 
 // There are some fields that are useless but this is simpler now.
 #[derive(Clone)]
@@ -9,7 +9,7 @@ pub struct DatasetHandle {
     pub id: String,
     pub name: String,
     pub is_on_cloud: bool,
-    pub client: Rc<ApifyClient>, // A reference to the actor's client
+    pub client: Arc<ApifyClient>, // A reference to the actor's client
 }
 
 impl DatasetHandle {
