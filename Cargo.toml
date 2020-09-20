@@ -1,0 +1,24 @@
+[package]
+name = "apify"
+version = "0.1.0"
+authors = ["metalwarrior665 <lukaskrivka@gmail.com>"]
+edition = "2018"
+description = "Apify SDK is a scraping and automation framework that can run on Apify platform or independently"
+homepage = "https://github.com/metalwarrior665/apify-rs"
+repository = "https://github.com/metalwarrior665/apify-rs"
+keywords = ["apify", "web-scraping", "web-automation"]
+categories = ["api-bindings"]
+# Contains API token for local tests
+exclude = ["test"]
+license = "MIT OR Apache-2.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+apify-client = "0.1.0"
+serde = "1.0.116"
+serde_json = "1.0.57"
+rand = "0.7.3"
+
+[dev-dependencies]
+tokio-test = "0.2.0"
